@@ -1,0 +1,10 @@
+# Epics:
+
+* Building the database/populate it
+* Implement Roulette logic
+* Implement Blackjack logic
+* Implement Poker logic
+* Implement Roulette GUI
+* Implement Blackjack GUI
+* Implement Poker GUI
+* Setup data collection
