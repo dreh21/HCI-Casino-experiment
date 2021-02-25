@@ -10,6 +10,11 @@
 * Enable function to write to a file in format that can be inserted into database 
 * write scripts Import data into Database 
 
+## Database communication
+* Set up connection 
+* Write functions that retrieve information from db 
+* Write functions that insert information into db
+
 ## Implement player class/struct/object
 * Create an object that can represent a player 
 * Needs to have attributes: ID, total money, games played, time played ,...
@@ -37,8 +42,13 @@
 * Add methods to rank hands and determine game winner for Hold'em
 * Create Omaha.java and implement game logic
 * Add methods to rank hands and determine game winner for Omaha
-* Set up "AI" for poker game cpu 
-* 
+* Set up "AI" for poker games cpu 
+
+## Implement Start menu GUI
+* Will be start menu that first will prompt player for there ID, Trial condition Code,...
+* After that information is gathered will have a base menu that will allow any of the games to be opened and played 
+* base menu will need a way to allow user to end session and "re up"(for when they lose all money and want to keep on playing)
+
 ## Implement Roulette GUI
 * Look into java animations librarys to get a roulette wheel spinning and ball to drop 
 * Set up buttons/methods to play again, exit to main menu, set bet amount, make bet,... 
