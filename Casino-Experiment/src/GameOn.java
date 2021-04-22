@@ -21,6 +21,8 @@ import java.sql.*;
 import java.awt.Color;
 import java.awt.Panel;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.border.MatteBorder;
 public class GameOn {
 
@@ -37,7 +39,7 @@ public class GameOn {
 	 */
 	public static void main(String[] args) {
 
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -57,6 +59,71 @@ public class GameOn {
 		initialize();
 	}
 
+	
+	
+    public static class Deck_of_cards {
+        public String[] SUITS = {
+                "_clubs", "_diamonds", "_hearts", "_spades"
+            };
+        
+        public String[] RANKS = {
+                "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                "jack", "queen", "king", "ace"
+            };
+        
+        public int fifty_two = SUITS.length * RANKS.length;
+        public String[] deck = new String[fifty_two];
+        public int current_card;
+        
+        
+        public void createdeck() {
+        	current_card=0;
+        	for (int i = 0; i < RANKS.length; i++) {
+        		for (int j = 0; j < SUITS.length; j++) {
+        			deck[SUITS.length*i + j] = RANKS[i] + "_of" + SUITS[j];
+        		}
+        	}
+        }
+        
+        public void printdeck() {
+        	for (int i = 0; i < fifty_two; i++) {
+        		System.out.println(deck[i]);
+        	}
+        }
+        
+        public void shuffledeck() {
+        	current_card=0;
+        	for (int i = 0; i < fifty_two; i++) {
+        		int r = i + (int) (Math.random() * (fifty_two-i));
+        		String temp = deck[r];
+        		deck[r] = deck[i];
+        		deck[i] = temp;
+        	}
+        }
+        
+        //returns the next card in the deck
+        public String return_next_card() {
+        	if(current_card == 0) {
+        		current_card=1;
+        		return deck[0];
+        	}
+        	else {
+        		current_card++;
+        		return deck[current_card-1];
+        	}
+        }
+        
+        
+        //returns the name of the image assoicated with the correct card. 
+        public String return_next_card_file(String card) {
+        	card=card+".png";
+        	return card;
+        }
+        
+    }
+	
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -103,29 +170,29 @@ public class GameOn {
 		
 		JLabel LoginMenuHeader = new JLabel("Enter your Regestration info below");
 		LoginMenuHeader.setFont(new Font("Calibri", Font.BOLD, 24));
-		LoginMenuHeader.setBounds(28, 22, 372, 42);
+		LoginMenuHeader.setBounds(28, 22, 475, 42);
 		LoginMenu.add(LoginMenuHeader);
 		
 		JLabel UserIDLabel = new JLabel("User ID:");
 		UserIDLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		UserIDLabel.setBounds(104, 81, 58, 14);
+		UserIDLabel.setBounds(148, 93, 58, 14);
 		LoginMenu.add(UserIDLabel);
 		
 		JTextField UserIDText = new JTextField();
 		UserIDText.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		UserIDText.setBounds(191, 80, 86, 20);
+		UserIDText.setBounds(224, 90, 86, 20);
 		LoginMenu.add(UserIDText);
 		UserIDText.setColumns(10);
 		
 		
 		JLabel passwordLabel = new JLabel("Password:");
 		passwordLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		passwordLabel.setBounds(104, 125, 73, 14);
+		passwordLabel.setBounds(133, 125, 73, 14);
 		LoginMenu.add(passwordLabel);
 		
 		JTextField passwordText = new JTextField();
 		passwordText.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		passwordText.setBounds(191, 122, 86, 20);
+		passwordText.setBounds(224, 122, 86, 20);
 		LoginMenu.add(passwordText);
 		passwordText.setColumns(10);
 		JButton SubmitButton = new JButton("Submit");
@@ -135,29 +202,20 @@ public class GameOn {
 				//System.out.println(userName);
 				String password=passwordText.getText();
 				//System.out.println(password);
-				if(userName.equals("NightHawk")&&password.equals("abc12345")) {
+				if(userName.equals("1")&&password.equals("a")) {
 					System.out.println("Here");
 					Version1.setVisible(true);
 					LoginMenu.setVisible(false);
 				}
-				if(userName.equals("SkyHawk")&&password.equals("abc12345")) {
+				if(userName.equals("2")&&password.equals("b")) {
 					Version2.setVisible(true);
 					LoginMenu.setVisible(false);
 				}
 			}
 		});
-		SubmitButton.setBounds(175, 176, 102, 46);
+		SubmitButton.setBounds(210, 178, 102, 46);
 		
 		LoginMenu.add(SubmitButton);
-		
-		
-		
-		
-		
-		JLabel Version1Header = new JLabel("Welcome to Version 1 ");
-		Version1Header.setHorizontalAlignment(SwingConstants.LEFT);
-		Version1Header.setBounds(145, 27, 170, 14);
-		Version1.add(Version1Header);
 		
 		JButton V1BlackJackButton = new JButton("Play Black Jack");
 		V1BlackJackButton.addActionListener(new ActionListener() {
@@ -166,7 +224,13 @@ public class GameOn {
 				V1BJ.setVisible(true);
 			}
 		});
-		V1BlackJackButton.setBounds(43, 169, 140, 23);
+		
+		JLabel lblVersion = new JLabel("Version 1");
+		lblVersion.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblVersion.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblVersion.setBounds(201, 64, 145, 42);
+		Version1.add(lblVersion);
+		V1BlackJackButton.setBounds(62, 213, 196, 51);
 		Version1.add(V1BlackJackButton);
 		
 		JButton V1PokerButton = new JButton("Play poker");
@@ -176,18 +240,8 @@ public class GameOn {
 				V1Poker.setVisible(true);
 			}
 		});
-		V1PokerButton.setBounds(273, 169, 89, 23);
+		V1PokerButton.setBounds(270, 213, 196, 51);
 		Version1.add(V1PokerButton);
-		
-
-		
-		
-		
-		
-		JLabel Version2Header = new JLabel("Welcome to version 2");
-		Version2Header.setHorizontalAlignment(SwingConstants.LEFT);
-		Version2Header.setBounds(189, 30, 188, 14);
-		Version2.add(Version2Header);
 		
 		JButton v2BlackJackButton = new JButton("Play Black Jack");
 		v2BlackJackButton.addActionListener(new ActionListener() {
@@ -196,7 +250,13 @@ public class GameOn {
 				V2BJ.setVisible(true);
 			}
 		});
-		v2BlackJackButton.setBounds(76, 150, 130, 23);
+		
+		JLabel lblVersion_2 = new JLabel("Version 2");
+		lblVersion_2.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblVersion_2.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblVersion_2.setBounds(195, 68, 145, 42);
+		Version2.add(lblVersion_2);
+		v2BlackJackButton.setBounds(74, 234, 196, 51);
 		Version2.add(v2BlackJackButton);
 		
 		JButton v2PokerButton = new JButton("Play Poker ");
@@ -206,81 +266,25 @@ public class GameOn {
 				V2Poker.setVisible(true);
 			}
 		});
-		v2PokerButton.setBounds(304, 150, 89, 23);
+		v2PokerButton.setBounds(282, 234, 196, 51);
 		Version2.add(v2PokerButton);
-		
-
-
-		
-		JLabel v1_bj_label = new JLabel("Version 1 Black Jack");
-		v1_bj_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		v1_bj_label.setBounds(205, 29, 148, 14);
-		V1BJ.add(v1_bj_label);
 		
 		JButton V1BJ_hit_btn = new JButton("Hit");
 		V1BJ_hit_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		V1BJ_hit_btn.setBounds(363, 91, 89, 23);
-		V1BJ.add(V1BJ_hit_btn);
 		
-		JButton V1BJ_stay_btn = new JButton("Stay");
-		V1BJ_stay_btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		V1BJ_stay_btn.setBounds(363, 125, 89, 23);
-		V1BJ.add(V1BJ_stay_btn);
-		
-		JButton V1BJ_yes_btn = new JButton("Yes");
-		V1BJ_yes_btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		V1BJ_yes_btn.setBounds(363, 178, 89, 23);
-		V1BJ.add(V1BJ_yes_btn);
-		
-		JButton V1BJ_no_btn = new JButton("No");
-		V1BJ_no_btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		V1BJ_no_btn.setBounds(363, 212, 89, 23);
-		V1BJ.add(V1BJ_no_btn);
-		
-		JPanel DealerCards = new JPanel();
-		DealerCards.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		DealerCards.setBackground(new Color(0, 100, 0));
-		DealerCards.setBounds(10, 73, 343, 108);
-		V1BJ.add(DealerCards);
-		DealerCards.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		JLabel V1BJ_dealer_C1 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C1);
-		
-		JLabel V1BJ_dealer_C2 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C2);
-		
-		JLabel V1BJ_dealer_C3 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C3);
-		
-		JLabel V1BJ_dealer_C4 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C4);
-		
-		JLabel V1BJ_dealer_C5 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C5);
-		
-		JLabel V1BJ_dealer_C6 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C6);
-		
-		JLabel V1BJ_dealer_C7 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C7);
+		JLabel lblDealer = new JLabel("Dealer");
+		lblDealer.setForeground(Color.WHITE);
+		lblDealer.setBounds(433, 12, 97, 153);
+		V1BJ.add(lblDealer);
+		lblDealer.setFont(new Font("Dialog", Font.BOLD, 24));
 		
 		JPanel PlayerCards = new JPanel();
 		PlayerCards.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		PlayerCards.setBackground(new Color(0, 100, 0));
-		PlayerCards.setBounds(10, 192, 343, 108);
+		PlayerCards.setBounds(10, 176, 413, 149);
 		V1BJ.add(PlayerCards);
 		PlayerCards.setLayout(new GridLayout(1, 0, 0, 0));
 		
@@ -304,6 +308,90 @@ public class GameOn {
 		
 		JLabel V1BJ_Player_C7 = new JLabel("");
 		PlayerCards.add(V1BJ_Player_C7);
+		
+		JPanel DealerCards = new JPanel();
+		DealerCards.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		DealerCards.setBackground(new Color(0, 100, 0));
+		DealerCards.setBounds(10, 26, 413, 155);
+		V1BJ.add(DealerCards);
+		DealerCards.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		
+		
+		Deck_of_cards Deck1 = new Deck_of_cards();
+		Deck1.createdeck();
+		Deck1.shuffledeck();
+		//creating player cards
+		String P_card1=Deck1.return_next_card();
+		String P_card2=Deck1.return_next_card();
+		String P_card3=Deck1.return_next_card();
+		String P_card4=Deck1.return_next_card();
+		String P_card5=Deck1.return_next_card();
+		String P_card6=Deck1.return_next_card();
+		String P_card7=Deck1.return_next_card();
+		//creating dealer cards
+		String D_card1=Deck1.return_next_card();
+		String D_card2=Deck1.return_next_card();
+		String D_card3=Deck1.return_next_card();
+		String D_card4=Deck1.return_next_card();
+		String D_card5=Deck1.return_next_card();
+		String D_card6=Deck1.return_next_card();
+		String D_card7=Deck1.return_next_card();
+		String path;
+		path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
+
+		
+		JLabel V1BJ_dealer_C1 = new JLabel("");
+		V1BJ_dealer_C1.setBounds(10,11,52,130);	
+		path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
+		path=path+Deck1.return_next_card_file(D_card1);
+		DealerCards.add(V1BJ_dealer_C1);
+		ImageIcon MyImage = new ImageIcon(path);
+		Image img = MyImage.getImage();
+		Image newImg = img.getScaledInstance(V1BJ_dealer_C1.getWidth(), V1BJ_dealer_C1.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon image = new ImageIcon(newImg);
+		V1BJ_dealer_C1.setIcon(image);
+		DealerCards.add(V1BJ_dealer_C1);
+		
+		
+		JLabel V1BJ_dealer_C2 = new JLabel("");
+		V1BJ_dealer_C2.setBounds(10,11,52,130);	
+		path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
+		path=path+Deck1.return_next_card_file(D_card2);
+		DealerCards.add(V1BJ_dealer_C2);
+		ImageIcon MyImage2 = new ImageIcon(path);
+		Image img2 = MyImage2.getImage();
+		Image newImg2 = img2.getScaledInstance(V1BJ_dealer_C2.getWidth(), V1BJ_dealer_C2.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon image2 = new ImageIcon(newImg2);
+		V1BJ_dealer_C2.setIcon(image2);
+		DealerCards.add(V1BJ_dealer_C2);
+		
+
+		
+		JLabel V1BJ_dealer_C3 = new JLabel("");
+		DealerCards.add(V1BJ_dealer_C3);
+		
+		JLabel V1BJ_dealer_C4 = new JLabel("");
+		DealerCards.add(V1BJ_dealer_C4);
+		
+		JLabel V1BJ_dealer_C5 = new JLabel("");
+		DealerCards.add(V1BJ_dealer_C5);
+		
+		JLabel V1BJ_dealer_C6 = new JLabel("");
+		DealerCards.add(V1BJ_dealer_C6);
+		
+		JLabel V1BJ_dealer_C7 = new JLabel("");
+		DealerCards.add(V1BJ_dealer_C7);
+		V1BJ_hit_btn.setBounds(440, 201, 76, 36);
+		V1BJ.add(V1BJ_hit_btn);
+		
+		JButton V1BJ_stay_btn = new JButton("Stay");
+		V1BJ_stay_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		V1BJ_stay_btn.setBounds(440, 249, 76, 36);
+		V1BJ.add(V1BJ_stay_btn);
 		
 	
 		
