@@ -31,6 +31,8 @@ public class DeckOfCards {
         faceValues.add("6");
         faceValues.add("7");
         faceValues.add("8");
+        int bleh = 0;
+        bleh = bleh + 2;
         faceValues.add("9");
         faceValues.add("10");
         faceValues.add("jack");
