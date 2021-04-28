@@ -22,18 +22,19 @@ import java.awt.Color;
 import java.awt.Panel;
 import java.awt.GridLayout;
 import java.awt.Image;
-
 import javax.swing.border.MatteBorder;
+
+
 public class GameOn {
 
 	private JFrame frame;
 	private JPanel LoginMenu;
 	private JPanel Version1;
 	private JPanel Version2;
-	private JPanel V1BJ;
-	private JPanel V1Poker;
-	private JPanel V2BJ;
-	private JPanel V2Poker;
+	public JPanel V1BJ;
+	public JPanel V1Poker;
+	public JPanel V2BJ;
+	public JPanel V2Poker;
 	/**
 	 * Launch the application.
 	 */
@@ -61,66 +62,6 @@ public class GameOn {
 
 	
 	
-    public static class Deck_of_cards {
-        public String[] SUITS = {
-                "_clubs", "_diamonds", "_hearts", "_spades"
-            };
-        
-        public String[] RANKS = {
-                "2", "3", "4", "5", "6", "7", "8", "9", "10",
-                "jack", "queen", "king", "ace"
-            };
-        
-        public int fifty_two = SUITS.length * RANKS.length;
-        public String[] deck = new String[fifty_two];
-        public int current_card;
-        
-        
-        public void createdeck() {
-        	current_card=0;
-        	for (int i = 0; i < RANKS.length; i++) {
-        		for (int j = 0; j < SUITS.length; j++) {
-        			deck[SUITS.length*i + j] = RANKS[i] + "_of" + SUITS[j];
-        		}
-        	}
-        }
-        
-        public void printdeck() {
-        	for (int i = 0; i < fifty_two; i++) {
-        		System.out.println(deck[i]);
-        	}
-        }
-        
-        public void shuffledeck() {
-        	current_card=0;
-        	for (int i = 0; i < fifty_two; i++) {
-        		int r = i + (int) (Math.random() * (fifty_two-i));
-        		String temp = deck[r];
-        		deck[r] = deck[i];
-        		deck[i] = temp;
-        	}
-        }
-        
-        //returns the next card in the deck
-        public String return_next_card() {
-        	if(current_card == 0) {
-        		current_card=1;
-        		return deck[0];
-        	}
-        	else {
-        		current_card++;
-        		return deck[current_card-1];
-        	}
-        }
-        
-        
-        //returns the name of the image assoicated with the correct card. 
-        public String return_next_card_file(String card) {
-        	card=card+".png";
-        	return card;
-        }
-        
-    }
 	
 	
 	
@@ -153,7 +94,7 @@ public class GameOn {
 		V1BJ.setLayout(null);
 		V1BJ.setVisible(false);
 		
-		JPanel V1Poker = new JPanel();
+		V1Poker = new JPanel();
 		frame.getContentPane().add(V1Poker, "name_197828629444900");
 		V1Poker.setLayout(null);
 		V1Poker.setVisible(false);
@@ -203,7 +144,6 @@ public class GameOn {
 				String password=passwordText.getText();
 				//System.out.println(password);
 				if(userName.equals("1")&&password.equals("a")) {
-					System.out.println("Here");
 					Version1.setVisible(true);
 					LoginMenu.setVisible(false);
 				}
@@ -266,152 +206,27 @@ public class GameOn {
 				V2Poker.setVisible(true);
 			}
 		});
+		
 		v2PokerButton.setBounds(282, 234, 196, 51);
 		Version2.add(v2PokerButton);
 		
-		JButton V1BJ_hit_btn = new JButton("Hit");
-		V1BJ_hit_btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		JLabel lblDealer = new JLabel("Dealer");
-		lblDealer.setForeground(Color.WHITE);
-		lblDealer.setBounds(433, 12, 97, 153);
-		V1BJ.add(lblDealer);
-		lblDealer.setFont(new Font("Dialog", Font.BOLD, 24));
-		
-		JPanel PlayerCards = new JPanel();
-		PlayerCards.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		PlayerCards.setBackground(new Color(0, 100, 0));
-		PlayerCards.setBounds(10, 176, 413, 149);
-		V1BJ.add(PlayerCards);
-		PlayerCards.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		JLabel V1BJ_Player_C1 = new JLabel("");
-		PlayerCards.add(V1BJ_Player_C1);
-		
-		JLabel V1BJ_Player_C2 = new JLabel("");
-		PlayerCards.add(V1BJ_Player_C2);
-		
-		JLabel V1BJ_Player_C3 = new JLabel("");
-		PlayerCards.add(V1BJ_Player_C3);
-		
-		JLabel V1BJ_Player_C4 = new JLabel("");
-		PlayerCards.add(V1BJ_Player_C4);
-		
-		JLabel V1BJ_Player_C5 = new JLabel("");
-		PlayerCards.add(V1BJ_Player_C5);
-		
-		JLabel V1BJ_Player_C6 = new JLabel("");
-		PlayerCards.add(V1BJ_Player_C6);
-		
-		JLabel V1BJ_Player_C7 = new JLabel("");
-		PlayerCards.add(V1BJ_Player_C7);
-		
-		JPanel DealerCards = new JPanel();
-		DealerCards.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		DealerCards.setBackground(new Color(0, 100, 0));
-		DealerCards.setBounds(10, 26, 413, 155);
-		V1BJ.add(DealerCards);
-		DealerCards.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		
-		
-		Deck_of_cards Deck1 = new Deck_of_cards();
-		Deck1.createdeck();
-		Deck1.shuffledeck();
-		//creating player cards
-		String P_card1=Deck1.return_next_card();
-		String P_card2=Deck1.return_next_card();
-		String P_card3=Deck1.return_next_card();
-		String P_card4=Deck1.return_next_card();
-		String P_card5=Deck1.return_next_card();
-		String P_card6=Deck1.return_next_card();
-		String P_card7=Deck1.return_next_card();
-		//creating dealer cards
-		String D_card1=Deck1.return_next_card();
-		String D_card2=Deck1.return_next_card();
-		String D_card3=Deck1.return_next_card();
-		String D_card4=Deck1.return_next_card();
-		String D_card5=Deck1.return_next_card();
-		String D_card6=Deck1.return_next_card();
-		String D_card7=Deck1.return_next_card();
-		String path;
-		path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
-
-		
-		JLabel V1BJ_dealer_C1 = new JLabel("");
-		V1BJ_dealer_C1.setBounds(10,11,52,130);	
-		path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
-		path=path+Deck1.return_next_card_file(D_card1);
-		DealerCards.add(V1BJ_dealer_C1);
-		ImageIcon MyImage = new ImageIcon(path);
-		Image img = MyImage.getImage();
-		Image newImg = img.getScaledInstance(V1BJ_dealer_C1.getWidth(), V1BJ_dealer_C1.getHeight(), Image.SCALE_SMOOTH);
-		ImageIcon image = new ImageIcon(newImg);
-		V1BJ_dealer_C1.setIcon(image);
-		DealerCards.add(V1BJ_dealer_C1);
-		
-		
-		JLabel V1BJ_dealer_C2 = new JLabel("");
-		V1BJ_dealer_C2.setBounds(10,11,52,130);	
-		path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
-		path=path+Deck1.return_next_card_file(D_card2);
-		DealerCards.add(V1BJ_dealer_C2);
-		ImageIcon MyImage2 = new ImageIcon(path);
-		Image img2 = MyImage2.getImage();
-		Image newImg2 = img2.getScaledInstance(V1BJ_dealer_C2.getWidth(), V1BJ_dealer_C2.getHeight(), Image.SCALE_SMOOTH);
-		ImageIcon image2 = new ImageIcon(newImg2);
-		V1BJ_dealer_C2.setIcon(image2);
-		DealerCards.add(V1BJ_dealer_C2);
-		
-
-		
-		JLabel V1BJ_dealer_C3 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C3);
-		
-		JLabel V1BJ_dealer_C4 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C4);
-		
-		JLabel V1BJ_dealer_C5 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C5);
-		
-		JLabel V1BJ_dealer_C6 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C6);
-		
-		JLabel V1BJ_dealer_C7 = new JLabel("");
-		DealerCards.add(V1BJ_dealer_C7);
-		V1BJ_hit_btn.setBounds(440, 201, 76, 36);
-		V1BJ.add(V1BJ_hit_btn);
-		
-		JButton V1BJ_stay_btn = new JButton("Stay");
-		V1BJ_stay_btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		V1BJ_stay_btn.setBounds(440, 249, 76, 36);
-		V1BJ.add(V1BJ_stay_btn);
-		
+		//runs blackjack version1 (v1bj.java)
+		v1bj BJv1 = new v1bj();
+		BJv1.run(V1BJ);
 	
 		
+		//runs poker version 1 (v1p.java)
+		v1p Pv1 = new v1p();
+		Pv1.run(V1Poker);
 		
-		JLabel v1_poker_label = new JLabel("V1 poker");
-		v1_poker_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		v1_poker_label.setBounds(205, 33, 73, 14);
-		V1Poker.add(v1_poker_label);
+		v2bj BJv2 = new v2bj();
+		BJv2.run(V2BJ);
 		
-
-		
-		JLabel v2_bj_label = new JLabel("v2 black jack");
-		v2_bj_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		v2_bj_label.setBounds(191, 33, 133, 14);
-		V2BJ.add(v2_bj_label);
+		//runs poker version 2 (v2p.java)
+		v2p Pv2 = new v2p();
+		Pv2.run(V2Poker);
 		
 		
-		JLabel v2_poker_label = new JLabel("v2 poker ");
-		v2_poker_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		v2_poker_label.setBounds(208, 21, 73, 14);
-		V2Poker.add(v2_poker_label);
+	
 	}
 }
