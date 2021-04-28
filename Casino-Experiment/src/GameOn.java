@@ -213,7 +213,8 @@ public class GameOn {
 		//runs blackjack version1 (v1bj.java)
 		v1bj BJv1 = new v1bj();
 		BJv1.run(V1BJ);
-	
+		
+		//end of BJv1
 		
 		//runs poker version 1 (v1p.java)
 		v1p Pv1 = new v1p();
