@@ -35,6 +35,8 @@ public class GameOn {
 	public JPanel V1Poker;
 	public JPanel V2BJ;
 	public JPanel V2Poker;
+	
+
 	/**
 	 * Launch the application.
 	 */
@@ -211,8 +213,9 @@ public class GameOn {
 		Version2.add(v2PokerButton);
 		
 		//runs blackjack version1 (v1bj.java)
-		v1bj BJv1 = new v1bj();
-		BJv1.run(V1BJ);
+
+			v1bj BJv1 = new v1bj();
+			BJv1.run(V1BJ);
 		
 		//end of BJv1
 		

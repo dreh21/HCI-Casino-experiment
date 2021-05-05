@@ -77,6 +77,113 @@ public class Deck_of_cards {
     	}
     }
     
+    //returns the players hand
+    public String[] return_player_hand(int numcards) {
+    	String [] ret = new String [7];
+    	for(int i =0; i<numcards; i++) {
+    		ret[i]=deck[i];
+    	}
+    	return ret;
+    	
+    }
+    
+    //returns the players total
+    public int getPlayertotalBJ(String [] playerhand, int numcards){
+    	int ret =0;
+    	int has_ace = 0;
+    	
+    	for(int i =0; i<numcards; i++) {
+    		playerhand[i]=playerhand[i].substring(0,2);
+    		if(playerhand[i].equals("10")) {
+    			ret+=10;
+    			continue;
+    		}
+    		playerhand[i]=playerhand[i].substring(0,1);
+    		if( playerhand[i].equals("k") || playerhand[i].equals("q") || playerhand[i].equals("j")){
+    			ret+=10;
+    		}
+    		else if (playerhand[i].equals("a")) {
+    			has_ace ++;
+    		}
+    		else {
+    			int temp = Integer.parseInt(playerhand[i]);
+    			ret+=temp;
+    		}
+    	}
+    	if(has_ace > 0) {
+    		if(has_ace == 1) {
+    			if(ret+11 > 21) {
+    				ret+=1;
+    			}
+    			else {
+    				ret+=11;
+    			}
+    		}
+    		else if(has_ace ==2) {
+    			if(ret+11 > 21) {
+    				ret+=1;
+    			}
+    			else {
+    				ret+=11;
+    			}
+    			if(ret+11 > 21) {
+    				ret+=1;
+    			}
+    			else {
+    				ret+=11;
+    			}	
+    		}
+    		else if(has_ace ==3) {
+    			if(ret+11 > 21) {
+    				ret+=1;
+    			}
+    			else {
+    				ret+=11;
+    			}
+    			if(ret+11 > 21) {
+    				ret+=1;
+    			}
+    			else {
+    				ret+=11;
+    			}
+    			if(ret+11 > 21) {
+    				ret+=1;
+    			}
+    			else {
+    				ret+=11;
+    			}	
+    		}
+    		else if(has_ace ==4) {
+    			if(ret+11 > 21) {
+    				ret+=1;
+    			}
+    			else {
+    				ret+=11;
+    			}
+    			if(ret+11 > 21) {
+    				ret+=1;
+    			}
+    			else {
+    				ret+=11;
+    			}
+    			if(ret+11 > 21) {
+    				ret+=1;
+    			}
+    			else {
+    				ret+=11;
+    			}
+    			if(ret+11 > 21) {
+    				ret+=1;
+    			}
+    			else {
+    				ret+=11;
+    			}	
+    		}
+    	}
+    	
+    	
+    	return ret;
+    }
     
     //returns the name of the image assoicated with the correct card. 
     public String return_next_card_file(String card) {

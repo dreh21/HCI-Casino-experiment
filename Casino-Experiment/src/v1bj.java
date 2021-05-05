@@ -70,7 +70,6 @@ public class v1bj {
 				String path;
 				path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
 				player_num_of_cards++;
-				System.out.println(player_num_of_cards);
 				
 			//card3
 				
@@ -238,7 +237,11 @@ public class v1bj {
 		JButton V1BJ_stay_btn = new JButton("Stay");
 		V1BJ_stay_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//reveal dealer cards here
+				String [] playerhand = Deck1.return_player_hand(player_num_of_cards);
+				int playertotal=Deck1.getPlayertotalBJ(playerhand,player_num_of_cards);
+				System.out.print("player total is: ");
+				System.out.println(playertotal);				
+				
 			}
 		});
 		V1BJ_stay_btn.setBounds(440, 249, 76, 36);
