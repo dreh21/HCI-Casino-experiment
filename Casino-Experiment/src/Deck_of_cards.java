@@ -49,8 +49,18 @@ public class Deck_of_cards {
     	}
     }
     
+    
+    //used for printing blackjack hands
     public void printdeck() {
-    	for (int i = 0; i < fifty_two; i++) {
+    	System.out.println();
+    	System.out.println("Player deck:");
+    	
+    	for (int i = 0; i < 7; i++) {
+    		System.out.println(deck[i]);
+    	}
+    	System.out.println();
+    	System.out.println("Dealer deck");
+    	for (int i = 7; i < 14; i++) {
     		System.out.println(deck[i]);
     	}
     }
@@ -190,6 +200,105 @@ public class Deck_of_cards {
     	card=card+".png";
     	return card;
     }
+
     
+    //returns the dealers hand
+    public String [] return_dealer_hand() {
+    	String [] dealerhand = new String [7];
+    	dealerhand[0]=deck[7];
+    	dealerhand[1]=deck[8];
+    	dealerhand[2]=deck[9];
+    	dealerhand[3]=deck[10];
+    	dealerhand[4]=deck[11];
+    	dealerhand[5]=deck[12];
+    	dealerhand[6]=deck[13];
+    	return dealerhand;
+    	
+    }
+
+    //returns the dealer total
+	public int [] return_dealer_total(String[] playerhand) {
+		boolean player_has_ace = false;
+		int ret =0;
+		int dealer_card_number =0;
+    	int has_ace = 0;
+    	int [] total = new int [2];
+    	for(int i =0; i<2; i++) {
+    		playerhand[i]=playerhand[i].substring(0,2);
+    		if(playerhand[i].equals("10")) {
+    			ret+=10;
+    			continue;
+    		}
+    		playerhand[i]=playerhand[i].substring(0,1);
+    		if( playerhand[i].equals("k") || playerhand[i].equals("q") || playerhand[i].equals("j")){
+    			ret+=10;
+    		}
+    		else if (playerhand[i].equals("a")) {
+    			has_ace ++;
+    			player_has_ace = true;
+    		}
+    		else {
+    			int temp = Integer.parseInt(playerhand[i]);
+    			ret+=temp;
+    		}
+    	}
+    	if(has_ace==1) {
+    		ret +=11;
+    	}
+    	else if(has_ace==2) {
+    		ret=12;
+    	}
+    	System.out.print("dealer total after 2 is: ");
+		System.out.println(ret);
+		for(int i =2; i<7; i++) {
+			boolean has_ace2=false;
+			if(ret<=16) {
+				//dealer hits
+					dealer_card_number=i+1;
+					playerhand[i]=playerhand[i].substring(0,2);
+					if(playerhand[i].equals("10")) {
+		    			ret+=10;
+		    			continue;
+		    		}
+		    		playerhand[i]=playerhand[i].substring(0,1);
+		    		if( playerhand[i].equals("k") || playerhand[i].equals("q") || playerhand[i].equals("j")){
+		    			ret+=10;
+		    		}
+		    		else if (playerhand[i].equals("a")) {
+		    			has_ace2 = true;
+		    			player_has_ace = true;
+		    		}
+		    		else {
+		    			int temp = Integer.parseInt(playerhand[i]);
+		    			ret+=temp;
+		    		}
+		    	
+		    		if(has_ace2==true) {
+		    			if(ret+11>21) {
+		    				ret+=1;
+		    			}
+		    			else {
+		    				ret+=11;
+		    			}
+		    		if(player_has_ace = true && ret >21) {
+		    			ret=ret-10;
+		    		}
+		    		}
+		    		System.out.print("dealer total after round ");
+		    		System.out.print(i+1);
+		    		System.out.print(" is: ");
+		    		System.out.println(ret);
+			}		
+			else {
+				dealer_card_number=i;
+				break;
+			}
+		
+		}
+		total[0]=ret;
+		total[1]=dealer_card_number;
+		
+		return total;
+	}
 }
 

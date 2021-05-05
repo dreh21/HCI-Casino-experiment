@@ -192,8 +192,7 @@ public class v1bj {
 		
 		JLabel V1BJ_dealer_C1 = new JLabel("");
 		V1BJ_dealer_C1.setBounds(10,11,52,130);	
-		path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
-		path=path+Deck1.return_next_card_file(D_card1);
+		path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/gray_back.png";
 		DealerCards.add(V1BJ_dealer_C1);
 		ImageIcon MyImage3 = new ImageIcon(path);
 		Image img3 = MyImage3.getImage();
@@ -218,29 +217,162 @@ public class v1bj {
 
 		
 		JLabel V1BJ_dealer_C3 = new JLabel("");
+		V1BJ_dealer_C3.setBounds(10,11,52,130);
+		//keep this path blank
+		path = "";
+		DealerCards.add(V1BJ_dealer_C3);
+		ImageIcon MyImage5 = new ImageIcon(path);
+		Image img5 = MyImage5.getImage();
+		Image newImg5 = img5.getScaledInstance(V1BJ_dealer_C3.getWidth(), V1BJ_dealer_C3.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon image5 = new ImageIcon(newImg5);
+		V1BJ_dealer_C3.setIcon(image5);
 		DealerCards.add(V1BJ_dealer_C3);
 		
 		JLabel V1BJ_dealer_C4 = new JLabel("");
+		V1BJ_dealer_C4.setBounds(10,11,52,130);
+		//keep this path blank
+		path = "";
+		DealerCards.add(V1BJ_dealer_C4);
+		ImageIcon MyImage6 = new ImageIcon(path);
+		Image img6 = MyImage6.getImage();
+		Image newImg6 = img6.getScaledInstance(V1BJ_dealer_C4.getWidth(), V1BJ_dealer_C4.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon image6 = new ImageIcon(newImg6);
+		V1BJ_dealer_C4.setIcon(image6);
 		DealerCards.add(V1BJ_dealer_C4);
 		
 		JLabel V1BJ_dealer_C5 = new JLabel("");
+		V1BJ_dealer_C5.setBounds(10,11,52,130);
+		//keep this path blank
+		path = "";
+		DealerCards.add(V1BJ_dealer_C5);
+		ImageIcon MyImage7 = new ImageIcon(path);
+		Image img7 = MyImage7.getImage();
+		Image newImg7 = img7.getScaledInstance(V1BJ_dealer_C5.getWidth(), V1BJ_dealer_C5.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon image7 = new ImageIcon(newImg7);
+		V1BJ_dealer_C5.setIcon(image7);
 		DealerCards.add(V1BJ_dealer_C5);
 		
 		JLabel V1BJ_dealer_C6 = new JLabel("");
+		V1BJ_dealer_C6.setBounds(10,11,52,130);
+		//keep this path blank
+		path = "";
+		DealerCards.add(V1BJ_dealer_C6);
+		ImageIcon MyImage8 = new ImageIcon(path);
+		Image img8 = MyImage8.getImage();
+		Image newImg8 = img8.getScaledInstance(V1BJ_dealer_C6.getWidth(), V1BJ_dealer_C6.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon image8 = new ImageIcon(newImg8);
+		V1BJ_dealer_C6.setIcon(image8);
 		DealerCards.add(V1BJ_dealer_C6);
 		
 		JLabel V1BJ_dealer_C7 = new JLabel("");
+		V1BJ_dealer_C7.setBounds(10,11,52,130);
+		//keep this path blank
+		path = "";
 		DealerCards.add(V1BJ_dealer_C7);
+		ImageIcon MyImage9 = new ImageIcon(path);
+		Image img9 = MyImage9.getImage();
+		Image newImg9 = img9.getScaledInstance(V1BJ_dealer_C7.getWidth(), V1BJ_dealer_C7.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon image9 = new ImageIcon(newImg9);
+		V1BJ_dealer_C6.setIcon(image9);
+		DealerCards.add(V1BJ_dealer_C7);
+		
+		
+		
 		V1BJ_hit_btn.setBounds(440, 201, 76, 36);
 		V1BJ.add(V1BJ_hit_btn);
 		
 		JButton V1BJ_stay_btn = new JButton("Stay");
 		V1BJ_stay_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String [] playerhand = Deck1.return_player_hand(player_num_of_cards);
-				int playertotal=Deck1.getPlayertotalBJ(playerhand,player_num_of_cards);
-				System.out.print("player total is: ");
-				System.out.println(playertotal);				
+				//get player total
+					String [] playerhand = Deck1.return_player_hand(player_num_of_cards);
+					int playertotal=Deck1.getPlayertotalBJ(playerhand,player_num_of_cards);
+					System.out.print("player total is: ");
+					System.out.println(playertotal);
+				//reveal dealer card1
+					String path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
+					path=path+Deck1.return_next_card_file(D_card1);
+					DealerCards.add(V1BJ_dealer_C1);
+					ImageIcon MyImage3 = new ImageIcon(path);
+					Image img3 = MyImage3.getImage();
+					Image newImg3 = img3.getScaledInstance(V1BJ_dealer_C1.getWidth(), V1BJ_dealer_C1.getHeight(), Image.SCALE_SMOOTH);
+					ImageIcon image3 = new ImageIcon(newImg3);
+					V1BJ_dealer_C1.setIcon(image3);
+					DealerCards.add(V1BJ_dealer_C1);
+				//get dealer total
+					String [] dealerhand = Deck1.return_dealer_hand(); 
+					int [] dealertotal = Deck1.return_dealer_total(dealerhand);
+					System.out.print("dealer total is: ");
+					System.out.println(dealertotal[0]);
+					int num_dealer_cards = dealertotal[1];
+					
+				//show dealer hand
+					
+					//card 3
+						if(num_dealer_cards >= 3) {
+							path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
+							path=path+Deck1.return_next_card_file(D_card3);
+							DealerCards.add(V1BJ_dealer_C3);
+							ImageIcon MyImage4 = new ImageIcon(path);
+							Image img4 = MyImage4.getImage();
+							Image newImg4 = img4.getScaledInstance(V1BJ_dealer_C3.getWidth(), V1BJ_dealer_C3.getHeight(), Image.SCALE_SMOOTH);
+							ImageIcon image4 = new ImageIcon(newImg4);
+							V1BJ_dealer_C3.setIcon(image4);
+							DealerCards.add(V1BJ_dealer_C3);
+						}
+					//card 4
+						if(num_dealer_cards >= 4) {
+							path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
+							path=path+Deck1.return_next_card_file(D_card4);
+							DealerCards.add(V1BJ_dealer_C4);
+							ImageIcon MyImage5 = new ImageIcon(path);
+							Image img5 = MyImage5.getImage();
+							Image newImg5 = img5.getScaledInstance(V1BJ_dealer_C4.getWidth(), V1BJ_dealer_C4.getHeight(), Image.SCALE_SMOOTH);
+							ImageIcon image5 = new ImageIcon(newImg5);
+							V1BJ_dealer_C4.setIcon(image5);
+							DealerCards.add(V1BJ_dealer_C4);
+						}
+					//card 5
+						if(num_dealer_cards >= 5) {
+							path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
+							path=path+Deck1.return_next_card_file(D_card5);
+							DealerCards.add(V1BJ_dealer_C5);
+							ImageIcon MyImage6 = new ImageIcon(path);
+							Image img6 = MyImage6.getImage();
+							Image newImg6 = img6.getScaledInstance(V1BJ_dealer_C5.getWidth(), V1BJ_dealer_C5.getHeight(), Image.SCALE_SMOOTH);
+							ImageIcon image6 = new ImageIcon(newImg6);
+							V1BJ_dealer_C5.setIcon(image6);
+							DealerCards.add(V1BJ_dealer_C5);
+						}
+					//card 6
+						if(num_dealer_cards >= 6) {
+							path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
+							path=path+Deck1.return_next_card_file(D_card6);
+							DealerCards.add(V1BJ_dealer_C6);
+							ImageIcon MyImage7 = new ImageIcon(path);
+							Image img7 = MyImage7.getImage();
+							Image newImg7 = img7.getScaledInstance(V1BJ_dealer_C6.getWidth(), V1BJ_dealer_C6.getHeight(), Image.SCALE_SMOOTH);
+							ImageIcon image7 = new ImageIcon(newImg7);
+							V1BJ_dealer_C6.setIcon(image7);
+							DealerCards.add(V1BJ_dealer_C6);
+						}
+					//card 7
+						if(num_dealer_cards >= 7) {
+							path = "/home/dreh/git/HCI-Casino-experiment/Casino-Experiment/Images/";
+							path=path+Deck1.return_next_card_file(D_card7);
+							DealerCards.add(V1BJ_dealer_C7);
+							ImageIcon MyImage8 = new ImageIcon(path);
+							Image img8 = MyImage8.getImage();
+							Image newImg8 = img8.getScaledInstance(V1BJ_dealer_C7.getWidth(), V1BJ_dealer_C7.getHeight(), Image.SCALE_SMOOTH);
+							ImageIcon image8 = new ImageIcon(newImg8);
+							V1BJ_dealer_C7.setIcon(image8);
+							DealerCards.add(V1BJ_dealer_C7);
+						}
+					
+				
+
+					
+				Deck1.printdeck();	
 				
 			}
 		});
