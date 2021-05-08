@@ -248,8 +248,6 @@ public class Deck_of_cards {
     	else if(has_ace==2) {
     		ret=12;
     	}
-    	System.out.print("dealer total after 2 is: ");
-		System.out.println(ret);
 		for(int i =2; i<7; i++) {
 			boolean has_ace2=false;
 			if(ret<=16) {
@@ -284,10 +282,7 @@ public class Deck_of_cards {
 		    			ret=ret-10;
 		    		}
 		    		}
-		    		System.out.print("dealer total after round ");
-		    		System.out.print(i+1);
-		    		System.out.print(" is: ");
-		    		System.out.println(ret);
+
 			}		
 			else {
 				dealer_card_number=i;
