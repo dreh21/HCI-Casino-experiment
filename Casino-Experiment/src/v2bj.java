@@ -292,8 +292,6 @@ public class v2bj {
 			public void actionPerformed(ActionEvent e) {
 				String [] playerhand = Deck1.return_player_hand(player_num_of_cards);
 				int playertotal=Deck1.getPlayertotalBJ(playerhand,player_num_of_cards);
-				System.out.print("player total is: ");
-				System.out.println(playertotal);
 				String [] dealerhand=Deck1.return_dealer_hand();
 				int dealertotal;
 				
@@ -313,7 +311,6 @@ public class v2bj {
 	    			int temp = Integer.parseInt(dealerhand[1]);
 	    			dealertotal=temp;
 	    		}
-	    		System.out.println("dealer:" + dealertotal);
 				if(playertotal<12 ) {
 					JOptionPane.showMessageDialog(null,"Hit","Advice",JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -431,10 +428,24 @@ public class v2bj {
 				
 
 					
-				Deck1.printdeck();	
+
 				
 			}
 		});
+		
+		JButton V2BJ_reset_btn_1 = new JButton("Reset");
+		V2BJ_reset_btn_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("NEW ROUND");
+				V2BJ.removeAll();
+				v2bj BJv2 = new v2bj();
+				BJv2.run(V2BJ);
+			}
+		});
+		
+		V2BJ_reset_btn_1.setBounds(440, 116, 76, 36);
+		V2BJ.add(V2BJ_reset_btn_1);
+		
 		V2BJ_stay_btn.setBounds(440, 249, 76, 36);
 		V2BJ.add(V2BJ_stay_btn);
 	}

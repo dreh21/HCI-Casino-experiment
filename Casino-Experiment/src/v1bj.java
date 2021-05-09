@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import java.sql.*;
+import java.util.concurrent.TimeUnit;
 import java.awt.Color;
 import java.awt.Panel;
 import java.awt.GridLayout;
@@ -28,6 +29,7 @@ public class v1bj {
 	public int player_num_of_cards=2;
 
 	void run(JPanel V1BJ) {
+		player_num_of_cards=2;
 		Deck_of_cards Deck1 = new Deck_of_cards();
 		Deck1.createdeck();
 		Deck1.shuffledeck();
@@ -372,12 +374,23 @@ public class v1bj {
 				
 
 					
-				Deck1.printdeck();	
 				
 			}
 		});
+		
+		JButton V1BJ_reset_btn_1 = new JButton("Reset");
+		V1BJ_reset_btn_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("NEW ROUND");
+				V1BJ.removeAll();
+				v1bj BJv1 = new v1bj();
+				BJv1.run(V1BJ);
+			}
+		});
+		
+		V1BJ_reset_btn_1.setBounds(440, 116, 76, 36);
+		V1BJ.add(V1BJ_reset_btn_1);
 		V1BJ_stay_btn.setBounds(440, 249, 76, 36);
 		V1BJ.add(V1BJ_stay_btn);
 	}
-
 }

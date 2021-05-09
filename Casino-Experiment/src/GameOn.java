@@ -35,7 +35,6 @@ public class GameOn {
 	public JPanel V1Poker;
 	public JPanel V2BJ;
 	public JPanel V2Poker;
-	
 
 	/**
 	 * Launch the application.
@@ -172,18 +171,8 @@ public class GameOn {
 		lblVersion.setFont(new Font("Dialog", Font.BOLD, 24));
 		lblVersion.setBounds(201, 64, 145, 42);
 		Version1.add(lblVersion);
-		V1BlackJackButton.setBounds(62, 213, 196, 51);
+		V1BlackJackButton.setBounds(176, 213, 196, 51);
 		Version1.add(V1BlackJackButton);
-		
-		JButton V1PokerButton = new JButton("Play poker");
-		V1PokerButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Version1.setVisible(false);
-				V1Poker.setVisible(true);
-			}
-		});
-		V1PokerButton.setBounds(270, 213, 196, 51);
-		Version1.add(V1PokerButton);
 		
 		JButton v2BlackJackButton = new JButton("Play Black Jack");
 		v2BlackJackButton.addActionListener(new ActionListener() {
@@ -198,37 +187,19 @@ public class GameOn {
 		lblVersion_2.setFont(new Font("Dialog", Font.BOLD, 24));
 		lblVersion_2.setBounds(195, 68, 145, 42);
 		Version2.add(lblVersion_2);
-		v2BlackJackButton.setBounds(74, 234, 196, 51);
+		v2BlackJackButton.setBounds(167, 230, 196, 51);
 		Version2.add(v2BlackJackButton);
 		
-		JButton v2PokerButton = new JButton("Play Poker ");
-		v2PokerButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Version2.setVisible(false);
-				V2Poker.setVisible(true);
-			}
-		});
-		
-		v2PokerButton.setBounds(282, 234, 196, 51);
-		Version2.add(v2PokerButton);
-		
 		//runs blackjack version1 (v1bj.java)
-
 			v1bj BJv1 = new v1bj();
-			BJv1.run(V1BJ);
-		
+			BJv1.run(V1BJ);			
 		//end of BJv1
 		
-		//runs poker version 1 (v1p.java)
-		v1p Pv1 = new v1p();
-		Pv1.run(V1Poker);
-		
-		v2bj BJv2 = new v2bj();
-		BJv2.run(V2BJ);
-		
-		//runs poker version 2 (v2p.java)
-		v2p Pv2 = new v2p();
-		Pv2.run(V2Poker);
+		//runs blackjack version2
+			v2bj BJv2 = new v2bj();
+			BJv2.run(V2BJ);
+		//end of BJv2
+
 		
 		
 	
